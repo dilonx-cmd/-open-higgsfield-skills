@@ -1,1 +1,18 @@
-
+mkdir -p .claude-plugin && python3 -c '
+import os, json
+skills = sorted(["./skills/" + d for d in os.listdir("skills") if os.path.isdir(os.path.join("skills", d)) and os.path.isfile(os.path.join("skills", d, "SKILL.md"))])
+data = {
+  "name": "open-higgsfield-skills",
+  "owner": {"name": "dilonx-cmd"},
+  "plugins": [{
+    "name": "open-higgsfield-suite",
+    "description": "Suite completa de 36 skills para ComfyUI y Open Higgsfield",
+    "source": "./",
+    "strict": False,
+    "skills": skills
+  }]
+}
+with open(".claude-plugin/marketplace.json", "w") as f:
+  json.dump(data, f, indent=2)
+print("Listo:", len(skills), "skills agregadas")
+' && git add .claude-plugin/marketplace.json && git commit -m "Fix marketplace.json" && git push
