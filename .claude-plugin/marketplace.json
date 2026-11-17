@@ -1,18 +1,53 @@
-mkdir -p .claude-plugin && python3 -c '
-import os, json
-skills = sorted(["./skills/" + d for d in os.listdir("skills") if os.path.isdir(os.path.join("skills", d)) and os.path.isfile(os.path.join("skills", d, "SKILL.md"))])
-data = {
+{
   "name": "open-higgsfield-skills",
-  "owner": {"name": "dilonx-cmd"},
-  "plugins": [{
-    "name": "open-higgsfield-suite",
-    "description": "Suite completa de 36 skills para ComfyUI y Open Higgsfield",
-    "source": "./",
-    "strict": False,
-    "skills": skills
-  }]
+  "owner": {
+    "name": "mojomast"
+  },
+  "plugins": [
+    {
+      "name": "open-higgsfield-suite",
+      "description": "Suite completa de 37 skills para dirección de cine, imágenes y video con ComfyUI",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/ai-cinematography",
+        "./skills/ai-commercial-director",
+        "./skills/ai-fashion-editorial",
+        "./skills/ai-film-director",
+        "./skills/ai-music-video",
+        "./skills/ai-product-photography",
+        "./skills/ai-storyboard-artist",
+        "./skills/ai-vfx-supervisor",
+        "./skills/audio-foley-sfx",
+        "./skills/camera-lens-optics",
+        "./skills/character-consistency",
+        "./skills/color-grading-lut",
+        "./skills/comfyui-workflow-builder",
+        "./skills/composition-framing",
+        "./skills/continuity-script-supervisor",
+        "./skills/controlnet-depth-pose",
+        "./skills/costume-wardrobe-design",
+        "./skills/dialogue-voice-acting",
+        "./skills/documentary-style",
+        "./skills/environment-set-design",
+        "./skills/flux-prompt-engineering",
+        "./skills/image-editing-inpainting",
+        "./skills/image-upscaling-detail",
+        "./skills/keyframe-interpolation",
+        "./skills/lighting-setup-studio",
+        "./skills/lipsync-facial-animation",
+        "./skills/lora-style-mixing",
+        "./skills/ltx-video-generation",
+        "./skills/motion-camera-movement",
+        "./skills/narrative-pacing-editing",
+        "./skills/pbr-textures-materials",
+        "./skills/qwen-image-editing",
+        "./skills/scene-transition-effects",
+        "./skills/script-to-shotlist",
+        "./skills/thumbnail-poster-design",
+        "./skills/video-upscaling-enhancement",
+        "./skills/wan-video-generation"
+      ]
+    }
+  ]
 }
-with open(".claude-plugin/marketplace.json", "w") as f:
-  json.dump(data, f, indent=2)
-print("Listo:", len(skills), "skills agregadas")
-' && git add .claude-plugin/marketplace.json && git commit -m "Fix marketplace.json" && git push
